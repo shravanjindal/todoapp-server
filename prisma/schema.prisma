@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model todos {
+  id         Int       @id @default(autoincrement())
+  title      String
+  descrption String?
+  week       String?
+  completed  Boolean?  @default(false)
+  createdat  DateTime? @default(now()) @db.Timestamp(6)
+  updatedat  DateTime? @default(now()) @db.Timestamp(6)
+}
