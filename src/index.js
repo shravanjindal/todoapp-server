@@ -50,14 +50,13 @@ const server = new ApolloServer({
 
 async function startServer() {
   const { url } = await startStandaloneServer(server, {
-    listen: { port: process.env.PORT || 4000 }, // helpful for Render too
+    listen: { port: 4000 },
     context: async ({ req }) => ({
       token: req.headers.authorization,
     }),
-    cors: {
-      origin: '*', // allow requests from anywhere (okay during development)
-    },
-  });  
+  });
+
+  console.log(`🚀 Server ready at ${url}`);
 }
 
 startServer();
